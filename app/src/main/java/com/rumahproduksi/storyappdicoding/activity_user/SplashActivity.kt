@@ -31,7 +31,7 @@ class SplashActivity : AppCompatActivity() {
         val preferManager = PreferManager(this)
 
         lifecycleScope.launch {
-            delay(3000)
+            delay(2000)
             val intent = if(preferManager.exampleBoolean) {
                 Intent(this@SplashActivity, MainActivity::class.java)
             } else {
