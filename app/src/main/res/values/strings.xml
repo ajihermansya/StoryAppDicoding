@@ -3,4 +3,20 @@
     <string name="adaptability">Adaptability</string>
     <string name="descripsion_app">Aplikasi Story Capstone adalah lebih dari sekadar aplikasi cerita. Di sini, kamu akan menemukan inspirasi baru di setiap cerita, di mana setiap pengalaman menghadirkan adaptasi yang lebih cepat dan lebih seru. Inilah saatnya kamu menjadi penulis cerita dengan sentuhan pribadi yang khas!!</string>
     <string name="start">Mulai</string>
+    <string name="alert_email_error">Email invalid</string>
+    <string name="hint_email">Email</string>
+    <string name="alert_email_required">Email is required!</string>
+    <string name="alert_email_example_com_not_allowed">Emails with @example.com domain are not allowed!</string>
+    <string name="login">Login</string>
+    <string name="sign_up_with_googles">Sign up with Google!</string>
+    <string name="atau">atau</string>
+    <string name="hint_password">password</string>
+    <string name="error_password">The password must have at least 8 characters!</string>
+    <string name="belum_punya_akun">Belum punya akun?</string>
+    <string name="daftar">Daftar</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="desc_login">Selamat Datang kembali! Masuk email dan kata sandi Anda atau lanjutkan dengan media sosial</string>
+    <string name="login_tiitle">Login!</string>
+    <string name="title_splash">Aplikasi Story Capstone</string>
 </resources>

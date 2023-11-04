@@ -47,7 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
-        android:text="Aplikasi Story Capstone"
+        android:text="@string/title_splash"
         android:textColor="@color/black"
         android:textSize="26sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -55,10 +55,9 @@
 
     <TextView
         android:id="@+id/text_descripstion"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="5dp"
+        android:layout_marginStart="22dp"
         android:letterSpacing="0.01"
         android:text="@string/descripsion_app"
         android:textColor="@color/black_text"

@@ -2,6 +2,7 @@ package com.rumahproduksi.storyappdicoding.activity_user
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -27,7 +28,8 @@ class IntroActivity : AppCompatActivity() {
         Animation()
 
         binding.bottonMulai.setOnClickListener {
-            Toast.makeText(this, "uy", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
         }
 
 
