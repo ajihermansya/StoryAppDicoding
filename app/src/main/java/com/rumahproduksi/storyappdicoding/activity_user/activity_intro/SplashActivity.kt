@@ -1,15 +1,11 @@
-package com.rumahproduksi.storyappdicoding.activity_user
+package com.rumahproduksi.storyappdicoding.activity_user.activity_intro
 
 import android.content.Intent
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.WindowInsets
-import android.view.WindowManager
 import androidx.appcompat.app.ActionBar
 import androidx.lifecycle.lifecycleScope
 import com.rumahproduksi.storyappdicoding.MainActivity
-import com.rumahproduksi.storyappdicoding.R
 import com.rumahproduksi.storyappdicoding.activity_utils.preferences.PreferManager
 import com.rumahproduksi.storyappdicoding.databinding.ActivitySplashBinding
 import kotlinx.coroutines.delay

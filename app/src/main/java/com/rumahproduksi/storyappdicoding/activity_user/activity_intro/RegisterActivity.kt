@@ -1,4 +1,4 @@
-package com.rumahproduksi.storyappdicoding.activity_user
+package com.rumahproduksi.storyappdicoding.activity_user.activity_intro
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

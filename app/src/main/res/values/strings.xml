@@ -10,7 +10,7 @@
     <string name="login">Login</string>
     <string name="sign_up_with_googles">Sign up with Google!</string>
     <string name="atau">atau</string>
-    <string name="hint_password">password</string>
+    <string name="hint_password">Password</string>
     <string name="error_password">The password must have at least 8 characters!</string>
     <string name="belum_punya_akun">Belum punya akun?</string>
     <string name="daftar">Daftar</string>
@@ -19,4 +19,6 @@
     <string name="desc_login">Selamat Datang kembali! Masuk email dan kata sandi Anda atau lanjutkan dengan media sosial</string>
     <string name="login_tiitle">Login!</string>
     <string name="title_splash">Aplikasi Story Capstone</string>
+    <string name="check_email">Check your Email or Password!</string>
+    <string name="alert_warning_input">Please Complete your data first</string>
 </resources>

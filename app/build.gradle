@@ -17,7 +17,6 @@ android {
         versionName "1.0"
 
         buildConfigField("String", "API_URL", '"https://story-api.dicoding.dev/v1/"')
-        buildConfigField("String", "TOKEN", '"token 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"')
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
