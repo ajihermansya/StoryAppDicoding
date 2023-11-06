@@ -11,7 +11,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
-class HomeModel constructor(private val repository: RepositoryClass) : ViewModel() {
+class StoryViewModel constructor(private val repository: RepositoryClass) : ViewModel() {
     private val listStory = MutableLiveData<NetworkResults<StoryResponse>>()
     private var job: Job? = null
 

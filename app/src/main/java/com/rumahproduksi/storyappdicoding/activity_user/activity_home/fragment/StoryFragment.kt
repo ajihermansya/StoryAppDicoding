@@ -1,10 +1,11 @@
-package com.rumahproduksi.storyappdicoding
+package com.rumahproduksi.storyappdicoding.activity_user.activity_home.fragment
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
-import androidx.appcompat.app.ActionBar
+import android.view.ViewGroup
 import androidx.core.app.ActivityOptionsCompat
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.rumahproduksi.storyappdicoding.activity_adapter.StoryAdapter
@@ -15,55 +16,50 @@ import com.rumahproduksi.storyappdicoding.activity_user.model_user.StoryViewMode
 import com.rumahproduksi.storyappdicoding.activity_utils.model_view.FactoryViewModel
 import com.rumahproduksi.storyappdicoding.activity_utils.network.NetworkResults
 import com.rumahproduksi.storyappdicoding.activity_utils.preferences.PreferManager
-import com.rumahproduksi.storyappdicoding.databinding.ActivityMainBinding
+import com.rumahproduksi.storyappdicoding.databinding.FragmentStoryBinding
 
-class MainActivity : AppCompatActivity(), StoryAdapter.OnItemClickAdapter {
-    private  val binding : ActivityMainBinding by lazy {
-        ActivityMainBinding.inflate(layoutInflater)
+class StoryFragment : Fragment(), StoryAdapter.OnItemClickAdapter {
+
+    private val binding: FragmentStoryBinding by lazy {
+        FragmentStoryBinding.inflate(layoutInflater)
     }
 
     private lateinit var prefersManager: PreferManager
-    private lateinit var viewModel: StoryViewModel
+    private lateinit var storyModel: StoryViewModel
     private lateinit var storyAdapter: StoryAdapter
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(binding.root)
 
-        val actionBar: ActionBar? = supportActionBar
-        if (actionBar != null) {
-            actionBar.hide()
-        }
-
-        prefersManager = PreferManager(this)
-        storyAdapter = StoryAdapter(this, this)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        prefersManager = PreferManager(requireActivity())
+        storyAdapter = StoryAdapter(requireContext(), this)
 
         val dataRepository = RepositoryClass(ApiClient.getInstance())
-        viewModel = ViewModelProvider(this, FactoryViewModel(dataRepository))[StoryViewModel::class.java]
-
+        storyModel = ViewModelProvider(this, FactoryViewModel(dataRepository))[StoryViewModel::class.java]
 
         fetchData(prefersManager.token)
 
-        binding.swipeRefresh.setOnRefreshListener {
-            binding.swipeRefresh.isRefreshing = true
-            fetchData(prefersManager.token)
-        }
+
 
         binding.btnTry.setOnClickListener {
             setLoadingState(true)
             fetchData(prefersManager.token)
         }
+
+        return binding.root
     }
 
     private fun fetchData(auth: String) {
         binding.rvStory.apply {
             setHasFixedSize(true)
-            layoutManager = LinearLayoutManager(this@MainActivity)
+            layoutManager = LinearLayoutManager(requireActivity())
             adapter = storyAdapter
         }
-        viewModel.apply {
+        storyModel.apply {
             setLoadingState(true)
             fetchListStory(auth)
-            responseListStory.observe(this@MainActivity) {
+            responseListStory.observe(requireActivity()) {
                 when(it) {
                     is NetworkResults.Success -> {
                         if(it.data?.listStory != null) {
@@ -96,13 +92,14 @@ class MainActivity : AppCompatActivity(), StoryAdapter.OnItemClickAdapter {
         }
     }
 
-
     override fun onItemClicked(listStory: StoryList, optionsCompat: ActivityOptionsCompat) {
-        TODO("Not yet implemented")
+//        val intent = Intent(requireContext(), DetailStoryActivity::class.java)
+//        intent.putExtra(DetailStoryActivity.EXTRA_ITEM, listStory)
+//        startActivity(intent, optionsCompat.toBundle())
     }
 
     private fun setLoadingState(loading: Boolean) {
-        when(loading) {
+        when (loading) {
             true -> {
                 binding.rvStory.visibility = View.GONE
                 binding.progressBar.visibility = View.VISIBLE
@@ -113,5 +110,4 @@ class MainActivity : AppCompatActivity(), StoryAdapter.OnItemClickAdapter {
             }
         }
     }
-
 }
