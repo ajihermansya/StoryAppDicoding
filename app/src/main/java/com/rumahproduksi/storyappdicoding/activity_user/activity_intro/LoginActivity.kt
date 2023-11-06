@@ -88,7 +88,7 @@ class LoginActivity : AppCompatActivity() {
                                             MainActivity::class.java
                                         )
                                     )
-                                    finish()
+                                    finishAffinity()
                                     showLoading(false)
 
                                 }

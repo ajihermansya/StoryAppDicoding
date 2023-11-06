@@ -21,4 +21,14 @@
     <string name="title_splash">Aplikasi Story Capstone</string>
     <string name="check_email">Check your Email or Password!</string>
     <string name="alert_warning_input">Please Complete your data first</string>
+    <string name="register">Register!</string>
+    <string name="desc_register">Belum memiliki akun? Daftar sekarang untuk mengakses fitur-fitur menarik kami!</string>
+    <string name="hint_username">Username</string>
+    <string name="error_username">Enter a suitable name of more than 4 characters!</string>
+    <string name="register_btn">Register</string>
+    <string name="sudah_punya_akun">Sudah Punya akun?</string>
+    <string name="masuk">Masuk</string>
+    <string name="warning_input">Please complate your data fisrt!</string>
+    <string name="success_register">Succes for your account!</string>
+    <string name="error_register">Sorry, failed register your account!</string>
 </resources>
