@@ -84,4 +84,18 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
+    <string name="ganti_bahasa">Ganti Bahasa</string>
+    <string name="ajihermansya14_gmail_com">ajihermansya14@gmail.com</string>
+    <string name="hai">Hai,</string>
+    <string name="no">No</string>
+    <string name="log_out">Log Out</string>
+    <string name="are_you_sure">Are you sure ?</string>
+    <string name="yes">Yes</string>
+    <string name="log_out_warning">You log out from account</string>
+    <string name="not_out">Thank you for canceling</string>
+    <string name="cerita_harian">Cerita Harian</string>
+    <string name="my_account">Akun Saya</string>
+    <string name="add_photo">add image foto</string>
+    <string name="gallery">Gallery</string>
+    <string name="upload">Upload</string>
 </resources>

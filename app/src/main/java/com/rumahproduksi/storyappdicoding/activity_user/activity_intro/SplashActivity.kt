@@ -5,8 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.ActionBar
 import androidx.lifecycle.lifecycleScope
-import com.rumahproduksi.storyappdicoding.MainActivity
-import com.rumahproduksi.storyappdicoding.activity_user.activity_home.MainMenuActivity
+import com.rumahproduksi.storyappdicoding.activity_user.activity_home.MainActivity
 import com.rumahproduksi.storyappdicoding.activity_utils.preferences.PreferManager
 import com.rumahproduksi.storyappdicoding.databinding.ActivitySplashBinding
 import kotlinx.coroutines.delay

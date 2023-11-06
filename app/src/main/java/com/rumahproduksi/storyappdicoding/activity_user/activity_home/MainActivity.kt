@@ -1,5 +1,6 @@
-package com.rumahproduksi.storyappdicoding
+package com.rumahproduksi.storyappdicoding.activity_user.activity_home
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -17,9 +18,12 @@ import com.rumahproduksi.storyappdicoding.activity_utils.network.NetworkResults
 import com.rumahproduksi.storyappdicoding.activity_utils.preferences.PreferManager
 import com.rumahproduksi.storyappdicoding.databinding.ActivityMainBinding
 
+
 class MainActivity : AppCompatActivity(), StoryAdapter.OnItemClickAdapter {
+
+
     private  val binding : ActivityMainBinding by lazy {
-        ActivityMainBinding.inflate(layoutInflater)
+      ActivityMainBinding.inflate(layoutInflater)
     }
 
     private lateinit var prefersManager: PreferManager
@@ -52,6 +56,15 @@ class MainActivity : AppCompatActivity(), StoryAdapter.OnItemClickAdapter {
             setLoadingState(true)
             fetchData(prefersManager.token)
         }
+
+        binding.iconSetting.setOnClickListener {
+            startActivity(Intent(this, SettingActivity::class.java))
+        }
+
+        binding.uploadStory.setOnClickListener {
+            startActivity(Intent(this, AddStoryActivity::class.java))
+        }
+
     }
 
     private fun fetchData(auth: String) {
@@ -98,7 +111,9 @@ class MainActivity : AppCompatActivity(), StoryAdapter.OnItemClickAdapter {
 
 
     override fun onItemClicked(listStory: StoryList, optionsCompat: ActivityOptionsCompat) {
-        TODO("Not yet implemented")
+        val intent = Intent(this, DetailStoryActivity::class.java)
+        intent.putExtra(DetailStoryActivity.EXTRA_ITEM, listStory)
+        startActivity(intent, optionsCompat.toBundle())
     }
 
     private fun setLoadingState(loading: Boolean) {
