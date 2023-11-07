@@ -33,7 +33,7 @@
         android:theme="@style/Theme.StoryAppDicoding"
         tools:targetApi="31">
         <activity
-            android:name=".activity_user.activity_home.AddStoryActivity"
+            android:name=".activity_user.activity_home.UploadStoryActivity"
             android:exported="false" />
         <activity
             android:name=".activity_user.activity_home.MainMenuActivity"

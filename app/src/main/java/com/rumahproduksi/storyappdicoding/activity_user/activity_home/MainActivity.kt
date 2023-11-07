@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity(), StoryAdapter.OnItemClickAdapter {
         }
 
         binding.uploadStory.setOnClickListener {
-            startActivity(Intent(this, AddStoryActivity::class.java))
+            startActivity(Intent(this, UploadStoryActivity::class.java))
         }
 
     }
