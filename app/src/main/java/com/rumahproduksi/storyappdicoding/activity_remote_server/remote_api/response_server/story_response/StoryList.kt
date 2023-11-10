@@ -16,6 +16,6 @@ data class StoryList(
     val description: String,
 
     @field:SerializedName("photoUrl")
-    val photoUrl: String,
+    val photoUrl: String
 
 ) : Parcelable

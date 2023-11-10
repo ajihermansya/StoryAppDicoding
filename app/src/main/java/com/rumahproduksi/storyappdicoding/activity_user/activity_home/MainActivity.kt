@@ -6,10 +6,14 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.ActionBar
 import androidx.core.app.ActivityOptionsCompat
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
+import androidx.paging.PagingData
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.rumahproduksi.storyappdicoding.activity_adapter.StoryAdapter
 import com.rumahproduksi.storyappdicoding.activity_remote_server.RepositoryClass
+import com.rumahproduksi.storyappdicoding.activity_remote_server.locals.dao_story.StoryEntity
 import com.rumahproduksi.storyappdicoding.activity_remote_server.remote_api.api_server.ApiClient
 import com.rumahproduksi.storyappdicoding.activity_remote_server.remote_api.response_server.story_response.StoryList
 import com.rumahproduksi.storyappdicoding.activity_user.model_user.StoryViewModel
@@ -17,6 +21,7 @@ import com.rumahproduksi.storyappdicoding.activity_utils.model_view.FactoryViewM
 import com.rumahproduksi.storyappdicoding.activity_utils.network.NetworkResults
 import com.rumahproduksi.storyappdicoding.activity_utils.preferences.PreferManager
 import com.rumahproduksi.storyappdicoding.databinding.ActivityMainBinding
+import kotlinx.coroutines.flow.Flow
 
 
 class MainActivity : AppCompatActivity(), StoryAdapter.OnItemClickAdapter {
@@ -29,6 +34,8 @@ class MainActivity : AppCompatActivity(), StoryAdapter.OnItemClickAdapter {
     private lateinit var prefersManager: PreferManager
     private lateinit var viewModel: StoryViewModel
     private lateinit var storyAdapter: StoryAdapter
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -43,6 +50,9 @@ class MainActivity : AppCompatActivity(), StoryAdapter.OnItemClickAdapter {
 
         val dataRepository = RepositoryClass(ApiClient.getInstance())
         viewModel = ViewModelProvider(this, FactoryViewModel(dataRepository))[StoryViewModel::class.java]
+
+
+
 
 
         fetchData(prefersManager.token)

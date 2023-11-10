@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.ActionBar
 import com.bumptech.glide.Glide
-import com.rumahproduksi.storyappdicoding.R
 import com.rumahproduksi.storyappdicoding.activity_remote_server.remote_api.response_server.story_response.StoryList
 import com.rumahproduksi.storyappdicoding.databinding.ActivityDetailStoryBinding
 

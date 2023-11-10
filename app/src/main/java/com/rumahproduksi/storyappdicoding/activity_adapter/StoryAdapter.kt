@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.util.Pair
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.rumahproduksi.storyappdicoding.activity_remote_server.remote_api.response_server.story_response.StoryList
@@ -16,13 +17,14 @@ import com.rumahproduksi.storyappdicoding.databinding.CardStoryBinding
 class StoryAdapter(private val context: Context, private val clickListener: OnItemClickAdapter) :
     RecyclerView.Adapter<StoryAdapter.StoryViewHolder>() {
 
-    private val listStory = ArrayList<StoryList>()
+    private var listStory = ArrayList<StoryList>()
+
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setData(list: List<StoryList>) {
-        listStory.clear()
-        listStory.addAll(list)
-        notifyDataSetChanged()
+    fun setData(newList: List<StoryList>) {
+        var diffResult = DiffUtil.calculateDiff(StoryDiffCallback(listStory, newList))
+        listStory = newList as ArrayList<StoryList>
+        diffResult.dispatchUpdatesTo(this)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = StoryViewHolder(
