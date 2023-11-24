@@ -5,35 +5,29 @@ import android.animation.ObjectAnimator
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.TextUtils
 import android.view.View
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBar
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.coroutineScope
+import com.rumahproduksi.storyappdicoding.activity_model.ViewModelLogin
+import com.rumahproduksi.storyappdicoding.activity_preferences.ModelUsers
+import com.rumahproduksi.storyappdicoding.activity_preferences.FactoryViewModel
+import com.rumahproduksi.storyappdicoding.activity_remote.data_remote.Results
 import com.rumahproduksi.storyappdicoding.activity_user.activity_home.MainActivity
-import com.rumahproduksi.storyappdicoding.R
-import com.rumahproduksi.storyappdicoding.activity_remote_server.RepositoryClass
-import com.rumahproduksi.storyappdicoding.activity_remote_server.remote_api.api_server.ApiClient
-import com.rumahproduksi.storyappdicoding.activity_user.model_user.LoginRegisterModel
-import com.rumahproduksi.storyappdicoding.activity_utils.database.MessagesUtils
-import com.rumahproduksi.storyappdicoding.activity_utils.model_view.FactoryViewModel
-import com.rumahproduksi.storyappdicoding.activity_utils.network.NetworkResults
-import com.rumahproduksi.storyappdicoding.activity_utils.preferences.PreferManager
 import com.rumahproduksi.storyappdicoding.databinding.ActivityLoginBinding
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {
-    private val binding : ActivityLoginBinding  by lazy {
-        ActivityLoginBinding.inflate(layoutInflater)
+
+    private val viewModel by viewModels<ViewModelLogin> {
+        FactoryViewModel.getInstance(this)
     }
-    private lateinit var loginregisterModel: LoginRegisterModel
-    private lateinit var prefersManager: PreferManager
-    private var loginJobs: Job = Job()
+
+    private lateinit var binding : ActivityLoginBinding
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val actionBar: ActionBar? = supportActionBar
@@ -41,8 +35,8 @@ class LoginActivity : AppCompatActivity() {
             actionBar.hide()
         }
         Animation()
+        Actionsetups()
 
-        Loginhome()
 
         binding.iconBack.setOnClickListener {
             finish()
@@ -52,62 +46,8 @@ class LoginActivity : AppCompatActivity() {
             startActivity(Intent(this, RegisterActivity::class.java))
         }
 
-        prefersManager = PreferManager(this)
-        val dataRepository = RepositoryClass(ApiClient.getInstance())
-        loginregisterModel = ViewModelProvider(
-            this,
-            FactoryViewModel(dataRepository)
-        )[LoginRegisterModel::class.java]
 
 
-    }
-
-    @Suppress("DEPRECATION")
-    private fun Loginhome() {
-        binding.bottonLogin.setOnClickListener {
-            val email = binding.emailEditText.text.toString().trim()
-            val password = binding.passwordEditText.text.toString().trim()
-            if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
-                MessagesUtils.setMessage(this, getString(R.string.alert_warning_input))
-            } else {
-                showLoading(true)
-                lifecycle.coroutineScope.launchWhenResumed {
-                    if (loginJobs.isActive) loginJobs.cancel()
-                    loginJobs = launch {
-                        loginregisterModel.login(email, password).collect{ result ->
-                            when (result) {
-                                is NetworkResults.Success -> {
-                                    prefersManager.exampleBoolean = !result.data?.error!!
-                                    prefersManager.token = result.data.result.token
-                                    Toast.makeText(this@LoginActivity, "Login berhasil", Toast.LENGTH_SHORT).show()
-                                    startActivity(
-                                        Intent(
-                                            this@LoginActivity,
-                                            MainActivity::class.java
-                                        )
-                                    )
-                                    finishAffinity()
-                                    showLoading(false)
-
-                                }
-                                is NetworkResults.Loading -> {
-                                    showLoading(true)
-                                }
-
-                                is NetworkResults.Error -> {
-                                    MessagesUtils.setMessage(this@LoginActivity, resources.getString(R.string.check_email))
-                                    showLoading(false)
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    private fun showLoading(isLoading: Boolean) {
-        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
 
@@ -147,6 +87,37 @@ class LoginActivity : AppCompatActivity() {
             )
             startDelay = 100
         }.start()
+    }
+
+
+    private fun Actionsetups() {
+        binding.bottonLogin.setOnClickListener {
+            val email = binding.emailEditText.text.toString()
+            val password = binding.passwordEditText.text.toString()
+            viewModel.login(email, password).observe(this) { result ->
+                when (result) {
+                    is Results.Loading -> {
+                        binding.progressBar.visibility = View.VISIBLE
+                    }
+                    is Results.Success -> {
+                        val data = result.result.loginResult
+                        data?.let {
+                            viewModel.saveSession(ModelUsers(it.name.toString(), it.userId.toString(), it.token.toString()))
+                            binding.progressBar.visibility = View.GONE
+                            Intent(this, MainActivity::class.java).apply {
+                                flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+                                startActivity(this)
+                                finish()
+                            }
+                        }
+                    }
+                    is Results.Error -> {
+                        binding.progressBar.visibility = View.GONE
+                        Toast.makeText(this, "Login gagal", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        }
     }
 
 

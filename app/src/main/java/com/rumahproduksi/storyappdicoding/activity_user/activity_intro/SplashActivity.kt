@@ -5,10 +5,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.ActionBar
 import androidx.lifecycle.lifecycleScope
+import com.rumahproduksi.storyappdicoding.activity_preferences.PreferenceUserManager
+import com.rumahproduksi.storyappdicoding.activity_preferences.dataStore
 import com.rumahproduksi.storyappdicoding.activity_user.activity_home.MainActivity
-import com.rumahproduksi.storyappdicoding.activity_utils.preferences.PreferManager
 import com.rumahproduksi.storyappdicoding.databinding.ActivitySplashBinding
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 class SplashActivity : AppCompatActivity() {
@@ -20,15 +22,13 @@ class SplashActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val actionBar: ActionBar? = supportActionBar
-        if (actionBar != null) {
-            actionBar.hide()
-        }
+        actionBar?.hide()
 
-        val preferManager = PreferManager(this)
+        val preferManager = PreferenceUserManager.getInstance(this.dataStore)
 
         lifecycleScope.launch {
             delay(2000)
-            val intent = if(preferManager.exampleBoolean) {
+            val intent = if(preferManager.getSession().first().isLogin) {
                 Intent(this@SplashActivity, MainActivity::class.java)
             } else {
                 Intent(this@SplashActivity, IntroActivity::class.java)
@@ -36,9 +36,5 @@ class SplashActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
-
-
-
     }
-
 }

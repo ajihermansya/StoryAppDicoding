@@ -66,4 +66,5 @@
     <string name="error_upload_story">Sorry, you can try uploading again!</string>
     <string name="warning_upload">Please complete the uploaded file, including your description..</string>
     <string name="title_activity_maps">MapsActivity</string>
+    <string name="retry">Retry</string>
 </resources>
