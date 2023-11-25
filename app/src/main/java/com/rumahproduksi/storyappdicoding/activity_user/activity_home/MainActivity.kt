@@ -6,6 +6,8 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.rumahproduksi.storyappdicoding.R
 import com.rumahproduksi.storyappdicoding.activity_adapter.AdapterStory
 import com.rumahproduksi.storyappdicoding.activity_adapter.LoadingAdapter
 import com.rumahproduksi.storyappdicoding.activity_model.ViewModelStory
@@ -24,6 +26,7 @@ class MainActivity : AppCompatActivity(){
     }
 
     private lateinit var binding : ActivityMainBinding
+    private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +42,11 @@ class MainActivity : AppCompatActivity(){
         val ItemDecoration = DividerItemDecoration(this, layoutManager.orientation)
         binding.rvStory.addItemDecoration(ItemDecoration)
 
+        swipeRefreshLayout = findViewById(R.id.swipe_refresh_layout)
+        swipeRefreshLayout.setOnRefreshListener {
+            getStories()
+        }
+
         getStories()
 
         binding.iconSetting.setOnClickListener {
@@ -51,8 +59,6 @@ class MainActivity : AppCompatActivity(){
         binding.iconMap.setOnClickListener {
             startActivity(Intent(this, MapsActivity::class.java))
         }
-
-
     }
 
     private fun getStories() {
@@ -65,6 +71,7 @@ class MainActivity : AppCompatActivity(){
 
         viewModel.getStory.observe(this) {
             adapter.submitData(lifecycle, it)
+            swipeRefreshLayout.isRefreshing = false
         }
     }
 

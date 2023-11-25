@@ -1,6 +1,4 @@
 package com.rumahproduksi.storyappdicoding.activity_remote.data_remote
-
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import androidx.paging.Pager
@@ -20,6 +18,7 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import retrofit2.HttpException
+import timber.log.Timber
 import java.io.File
 
 class RepositoryStory private constructor(
@@ -43,7 +42,8 @@ class RepositoryStory private constructor(
             val response = apiService.getStoriesWithLocation(1)
             emit(Results.Success(response))
         } catch (e: Exception) {
-            Log.d("ListStoryViewModel", "getStoriesWithLocation: ${e.message.toString()} ")
+            Timber.tag("ListStoryViewModel")
+                .d("getStoriesWithLocation: " + e.message.toString() + " ")
             emit(Results.Error(e.message.toString()))
         }
     }
@@ -88,7 +88,4 @@ class RepositoryStory private constructor(
                 instance ?: RepositoryStory(apiService, userPreference)
             }.also { instance = it }
     }
-
-
-
 }

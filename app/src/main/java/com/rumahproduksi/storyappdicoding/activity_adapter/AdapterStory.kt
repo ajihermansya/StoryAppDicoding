@@ -36,7 +36,6 @@ class AdapterStory :
             binding.imgPhoto.setImageResource(0)
             Glide.with(binding.imgPhoto).load(story.photoUrl).into(binding.imgPhoto)
             itemView.setOnClickListener {
-                done
                 val position = Intent(itemView.context, DetailActivity::class.java)
                 position.putExtra(DetailActivity.DETAIL_STORY, story)
                 itemView.context.startActivity(position)

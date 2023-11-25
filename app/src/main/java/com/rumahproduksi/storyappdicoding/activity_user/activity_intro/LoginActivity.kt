@@ -47,7 +47,6 @@ class LoginActivity : AppCompatActivity() {
         }
 
 
-
     }
 
 
@@ -107,7 +106,7 @@ class LoginActivity : AppCompatActivity() {
                             Intent(this, MainActivity::class.java).apply {
                                 flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
                                 startActivity(this)
-                                finish()
+                                finishAffinity()
                             }
                         }
                     }
@@ -119,8 +118,5 @@ class LoginActivity : AppCompatActivity() {
             }
         }
     }
-
-
-
 
 }
