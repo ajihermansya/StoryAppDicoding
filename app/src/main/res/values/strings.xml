@@ -67,4 +67,7 @@
     <string name="warning_upload">Please complete the uploaded file, including your description..</string>
     <string name="title_activity_maps">MapsActivity</string>
     <string name="retry">Retry</string>
+    <string name="empty_upload">Upload Gambar Kembali!</string>
+    <string name="empty_take">Ambil ulang gambar anda!</string>
+    <string name="error_opencam">Gagal memunculkan kamera!</string>
 </resources>

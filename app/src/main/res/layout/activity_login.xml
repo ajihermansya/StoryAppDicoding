@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".activity_user.activity_intro.LoginActivity">
+    tools:context=".ui_user.activity_intro.LoginActivity">
 
 
 
@@ -86,7 +86,7 @@
         app:layout_constraintTop_toBottomOf="@+id/email"
         app:startIconDrawable="@drawable/icon_email_two">
 
-        <com.rumahproduksi.storyappdicoding.custome_class_view.EmailEditTextView
+        <com.rumahproduksi.storyappdicoding.ui_user.activity_intro.custome_view.EmailEditTextView
             android:id="@+id/emailEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -120,14 +120,14 @@
         app:layout_constraintTop_toBottomOf="@+id/password"
         app:startIconDrawable="@drawable/icon_lock">
 
-        <com.rumahproduksi.storyappdicoding.custome_class_view.PasswordEditTextView
+        <com.rumahproduksi.storyappdicoding.ui_user.activity_intro.custome_view.PasswordEditTextView
             android:id="@+id/passwordEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:ignore="SpeakableTextPresentCheck" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.rumahproduksi.storyappdicoding.custome_class_view.MyButtonClass
+    <com.rumahproduksi.storyappdicoding.ui_user.activity_intro.custome_view.MyButtonClass
         android:id="@+id/botton_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -156,7 +156,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/botton_login" />
 
-    <com.rumahproduksi.storyappdicoding.custome_class_view.MyButtonClass
+    <com.rumahproduksi.storyappdicoding.ui_user.activity_intro.custome_view.MyButtonClass
         android:id="@+id/botton_google"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

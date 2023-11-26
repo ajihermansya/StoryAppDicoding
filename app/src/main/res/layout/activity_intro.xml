@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".activity_user.activity_intro.IntroActivity">
+    tools:context=".ui_user.activity_intro.IntroActivity">
 
     <TextView
         android:id="@+id/textView"
@@ -68,7 +68,7 @@
         app:layout_constraintTop_toBottomOf="@+id/text_title" />
 
 
-    <com.rumahproduksi.storyappdicoding.custome_class_view.MyButtonClass
+    <com.rumahproduksi.storyappdicoding.ui_user.activity_intro.custome_view.MyButtonClass
         android:id="@+id/botton_mulai"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

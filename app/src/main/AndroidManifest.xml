@@ -37,13 +37,13 @@
         android:theme="@style/Theme.StoryAppDicoding"
         tools:targetApi="31">
         <activity
-            android:name=".activity_user.activity_home.story.CameraActivity"
+            android:name=".ui_user.activity_home.story.CameraActivity"
             android:exported="false" />
         <activity
-            android:name=".activity_user.activity_home.story.UploadStoryActivity"
+            android:name=".ui_user.activity_home.story.UploadStoryActivity"
             android:exported="false" />
         <activity
-            android:name=".activity_user.activity_home.story.DetailActivity"
+            android:name=".ui_user.activity_home.story.DetailActivity"
             android:exported="false" />
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
@@ -61,51 +61,38 @@
             android:value="AIzaSyBafn8N4QE6djDK2oYpp37ok79OAtDeOaM" />
 
         <activity
-            android:name=".activity_user.activity_maps.MapsActivity"
+            android:name=".ui_user.activity_maps.MapsActivity"
             android:exported="false"
             android:label="@string/title_activity_maps" />
         <activity
-            android:name=".activity_user.activity_intro.IntroActivity"
+            android:name=".ui_user.activity_intro.IntroActivity"
             android:exported="false" />
         <activity
-            android:name=".activity_user.activity_intro.LoginActivity"
+            android:name=".ui_user.activity_intro.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".activity_user.activity_intro.RegisterActivity"
+            android:name=".ui_user.activity_intro.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".activity_user.activity_home.SettingActivity"
+            android:name=".ui_user.activity_home.SettingActivity"
             android:exported="false" />
         <activity
-            android:name=".activity_user.activity_intro.SplashActivity"
+            android:name=".ui_user.activity_intro.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity_user.activity_home.MainActivity"
+            android:name=".ui_user.activity_home.MainActivity"
             android:exported="false">
-
             <!-- <intent-filter> -->
             <!-- <action android:name="android.intent.action.MAIN" /> -->
-
-
             <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
             <!-- </intent-filter> -->
         </activity>
 
-        <provider
-            android:name="androidx.core.content.FileProvider"
-            android:authorities="com.rumahproduksi.storyappdicoding"
-            android:exported="false"
-            android:grantUriPermissions="true">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths" />
-        </provider>
     </application>
 
 </manifest>
